@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/The-LALR-parser-generator-LPG/LPG-typescript-runtime"
+    "url": "https://github.com/A-LPG/LPG-typescript-runtime"
   },
   "keywords": [
     "LPG2",
@@ -16,9 +16,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/The-LALR-parser-generator-LPG/LPG-typescript-runtime/issues"
+    "url": "https://github.com/A-LPG/LPG-typescript-runtime/issues"
   },
-  "homepage": "https://github.com/The-LALR-parser-generator-LPG/LPG-typescript-runtime#readme",
+  "homepage": "https://github.com/A-LPG/LPG-typescript-runtime#readme",
   "scripts": {
     "build": "tsc --build",
     "clean": "tsc --build --clean"
