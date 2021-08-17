@@ -121,7 +121,7 @@ export namespace Lpg {
             public clone() : AbstractList<E> {
                 let result = new  AbstractList<E>();
                 for (let i = 0; i < this.content.length; i++) {
-                    this.content.push(this.content[i]);
+                    result.content.push(this.content[i]);
                 }
                 return result;
             }
@@ -161,7 +161,11 @@ export namespace Lpg {
             }
 
             toArray(): E[] {     
-                return this.content;;
+                let result =[]
+                for(let entry of this.content ){
+                    result.push(entry);
+                }
+                return result;
             }
 
             size(): number {
