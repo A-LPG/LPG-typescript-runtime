@@ -1677,7 +1677,7 @@ export class DiagnoseParser   {
                     prefix_length++;
                 }
             }
-            else if (s1.charAt(i + 1) == s2.charAt(j) && s1.charAt(i) == s2.charAt(j + 1))
+            else if (s1.charAt(i + 1) == s2.charAt(j) && s1.charAt(i) == s2.charAt(j + 1))//transposition
             {
                 count += 2;
                 i += 2;

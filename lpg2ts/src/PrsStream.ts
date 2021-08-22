@@ -280,8 +280,8 @@ export class PrsStream implements IPrsStream {
     public setStreamLength2(): void {
         this.len = this.tokens.size();
     }
-    public setStreamLength(len: number = -1): void {
-        if (-1 == len) {
+    public setStreamLength(len?: number): void {
+        if (typeof len == 'undefined') {
             this.setStreamLength2();
             return;
         }

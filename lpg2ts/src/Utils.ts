@@ -59,7 +59,7 @@ export namespace Lpg {
             contains(o: E): boolean;
             toArray(): E[];
             iterator(): Iterator<E>;
-            containsAll(c: Collection<any>): boolean;
+          
             addAll(c: Collection<any>): boolean;
             removeAll(c: Collection<any>): boolean;
 
@@ -192,10 +192,6 @@ export namespace Lpg {
 
             contains(val: E): boolean {
                 return this.content.indexOf(val) != -1;
-            }
-
-            containsAll(elems: Collection<E>): boolean {
-                return false;
             }
 
             isEmpty(): boolean {

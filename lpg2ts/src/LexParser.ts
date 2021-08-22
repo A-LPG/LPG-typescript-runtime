@@ -164,7 +164,7 @@ export class LexParser {
         //
         this.taking_actions = true;
         this.resetTokenStream(0);
-
+        this.lastToken = this.tokStream.getPrevious(this.curtok);
 
         //
         // Until it reaches the end-of-file token, this outer loop
