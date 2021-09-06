@@ -24,11 +24,6 @@ export class LexStream implements ILexStream {
     public prsStream?: IPrsStream;
     private errMsg?: IMessageHandler;
 
-    public thisTab(tab: number = LexStream.DEFAULT_TAB) : void {
-        this.lineOffsets = new IntSegmentedTuple(12);
-        this.setLineOffset(-1);
-        this.tab = tab;
-    }
     constructor(fileName: string, inputChars?: string, tab: number = LexStream.DEFAULT_TAB, lineOffsets?: IntSegmentedTuple) {
         this.lineOffsets = new IntSegmentedTuple(12);
         this.setLineOffset(-1);

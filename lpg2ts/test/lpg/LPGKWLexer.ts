@@ -12,17 +12,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 
-    //#line 58 "KeywordTemplateF.gi
+    //#line 24 "KeywordTemplateF.gi
 
+import { LPGKWLexerprs } from ".\/LPGKWLexerprs";
+import { LPGKWLexersym } from ".\/LPGKWLexersym";
+import { LPGParsersym } from ".\/LPGParsersym";
 
     //#line 46 "LPGKWLexer.gi
 
-import { LPGKWLexerprs }  from ".\/LPGKWLexerprs"
-import { LPGKWLexersym } from ".\/LPGKWLexersym";
-import { LPGParsersym } from "./LPGParsersym";
 
 
-    //#line 63 "KeywordTemplateF.gi
+    //#line 69 "KeywordTemplateF.gi
 
 export class LPGKWLexer extends LPGKWLexerprs
 {
@@ -138,7 +138,7 @@ export class LPGKWLexer extends LPGKWLexerprs
         return (c < 128 ? LPGKWLexer.tokenKind[c] : 0);
     }
 
-    //#line 101 "KeywordTemplateF.gi
+    //#line 107 "KeywordTemplateF.gi
 
 
     constructor( inputChars : string,  identifierKind : number)
@@ -336,7 +336,7 @@ export class LPGKWLexer extends LPGKWLexerprs
         this.keywordKind[27] = (LPGParsersym.TK_TYPES_KEY);
       
     
-    //#line 112 "KeywordTemplateF.gi
+    //#line 118 "KeywordTemplateF.gi
 
         for (let i : number = 0; i < this.keywordKind.length; i++)
         {

@@ -11,8 +11,8 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
-import { ParseTable } from "../../src";
 import { LPGLexersym } from "./LPGLexersym";
+import { ParseTable } from "../../src";
 export class LPGLexerprs implements ParseTable {
     public   readonly ERROR_SYMBOL : number = 0;
     public   getErrorSymbol() : number { return this.ERROR_SYMBOL; }

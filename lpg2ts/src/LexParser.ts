@@ -491,23 +491,6 @@ export class LexParser {
         return true;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //
     // This function takes as argument a configuration ([this.stack, stackTop], [this.tokStream, this.curtok])
     // and determines whether or not the reduce this.action the this.curtok can be validly parsed in this

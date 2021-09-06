@@ -14,17 +14,20 @@
 
     //#line 123 "LexerTemplateF.gi
 
-import { RuleAction, ParseTable, LexParser, ILexStream, IPrsStream, Monitor, LpgLexStream } from "..\/..\/src";
-import { LPGKWLexer } from "./LPGKWLexer";
-import { LPGLexerprs } from "./LPGLexerprs";
-import { LPGLexersym } from "./LPGLexersym";
-import { LPGParsersym } from "./LPGParsersym";
+import { RuleAction, ParseTable, LexParser, ILexStream, IPrsStream, Monitor,LpgLexStream} from "../../src";
+import { LPGLexerprs } from ".\/LPGLexerprs";
+import { LPGLexersym } from ".\/LPGLexersym";
+import { LPGKWLexer } from ".\/LPGKWLexer";
 
     //#line 8 "LPGLexer.gi
 
 
 
-    //#line 129 "LexerTemplateF.gi
+    //#line 2 "LexerBasicMapF.gi
+
+import { LPGParsersym } from ".\/LPGParsersym";
+
+    //#line 132 "LexerTemplateF.gi
 
 export class LPGLexer extends Object implements RuleAction
 {
@@ -138,7 +141,7 @@ export class LPGLexer extends Object implements RuleAction
     //#line 13 "LPGLexer.gi
  
 
-    //#line 163 "LexerBasicMapF.gi
+    //#line 168 "LexerBasicMapF.gi
 
 
     //
@@ -243,7 +246,7 @@ export class LPGLexer extends Object implements RuleAction
 
   
 
-    //#line 242 "LexerTemplateF.gi
+    //#line 245 "LexerTemplateF.gi
 
     public  ruleAction(ruleNumber : number ) : void
     {
@@ -1373,7 +1376,7 @@ export class LPGLexer extends Object implements RuleAction
               this.makeToken(this.getRhsFirstTokenIndex(2), this.getRhsLastTokenIndex(2), LPGParsersym.TK_SYMBOL);             break;
             } 
 
-    //#line 246 "LexerTemplateF.gi
+    //#line 249 "LexerTemplateF.gi
 
     
             default:
@@ -1383,7 +1386,7 @@ export class LPGLexer extends Object implements RuleAction
     }
 }
 
-    //#line 2 "LexerBasicMapF.gi
+    //#line 7 "LexerBasicMapF.gi
  
   export  class  LPGLexerLpgLexStream  extends LpgLexStream
     {
