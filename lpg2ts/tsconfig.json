@@ -4,6 +4,7 @@
     "target": "es2015",
     "inlineSources": true,
     "lib": [ "es6" ],
+    "rootDir": "src",
     "outDir": "dist",
     "sourceMap": true,
     "declaration": true,
