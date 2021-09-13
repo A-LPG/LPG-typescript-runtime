@@ -197,7 +197,7 @@ export class PrsStream implements IPrsStream {
         return this.iLexStream?.getLineNumberOfCharAt(i);
     }
     public getColumnOfCharAt(i: number): number {
-        return this.getColumnOfCharAt(i);
+        return this.iLexStream?.getColumnOfCharAt(i);
     }
     public getFirstErrorToken(i: number): number {
         return this.getFirstRealToken(i);

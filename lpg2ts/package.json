@@ -1,6 +1,6 @@
 {
   "name": "lpg2ts",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "lpg2ts , Typescript runtime for LPG2 ",
   "main": "./dist/index.js",
   "author": {
