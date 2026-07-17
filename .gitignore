@@ -1,1 +1,6 @@
 out
+
+node_modules/
+dist/
+*.tsbuildinfo
+package-lock.json

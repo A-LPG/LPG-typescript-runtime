@@ -1,16 +1,52 @@
-[![](https://vsmarketplacebadge.apphb.com/version-short/kuafuwang.lpg-vscode.svg)](https://marketplace.visualstudio.com/items?itemName=kuafuwang.lpg-vscode)
-
 # LPG-typescript-runtime
 
-TypeScript  runtime libraries for LPG2
+TypeScript/JavaScript runtime for [LPG2](https://github.com/A-LPG/LPG2).
 
-This runtime is available through npm. The package name is '[lpg2ts]( https://www.npmjs.com/package/lpg2ts )'.
+## Install / coordinates
 
+| Field | Value |
+|-------|-------|
+| Package | npm [`lpg2ts`](https://www.npmjs.com/package/lpg2ts) |
+| Version | 0.0.11 |
+| Compatible generator | LPG2 ≥ 2.3.0 — see [`ecosystem/compat.json`](https://github.com/A-LPG/LPG2/blob/main/ecosystem/compat.json) |
 
-## Getting Started with LPG
+```bash
+npm install lpg2ts
+```
 
-[Getting Started with LPG]( https://github.com/A-LPG/LPG2/tree/main/lpg-generator-templates-2.1.00/docs )
+## Minimum toolchain
 
+Node.js 18+.
 
-## About LPG
-The LALR parser generator ([LPG]( https://github.com/A-LPG/LPG2 )) is a tool for developing scanners and parsers written in TypeScript, C#,Java, C++ or C. Input is specified by BNF rules. LPG supports backtracking (to resolve ambiguity), automatic AST generation and grammar inheritance.
+## Build and test
+
+```bash
+cd lpg2ts
+npm install
+npm run build
+```
+
+## Wiring generated files
+
+1. Generate with `-programming_language=typescript -table` and `dtParserTemplateF.gi`
+2. Import generated parser alongside `lpg2ts`
+3. See [calculator TypeScript sample](https://github.com/A-LPG/LPG2/tree/main/examples/calculator/typescript)
+
+## Features
+
+| Feature | Status |
+|---------|--------|
+| Deterministic parser | yes |
+| Backtracking | yes |
+| Nested automatic AST | yes |
+| `%Recover` prosthetic AST | yes |
+
+## Publish status
+
+- Channel: npm
+- Automation: `.github/workflows/publish.yml` (requires `NPM_TOKEN`)
+
+## Links
+
+- Generator: https://github.com/A-LPG/LPG2
+- Ecosystem: https://github.com/A-LPG/LPG2/blob/main/docs/ECOSYSTEM.md
