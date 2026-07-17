@@ -12,6 +12,7 @@ import { ConfigurationStack } from "./ConfigurationStack";
 import { ConfigurationElement } from "./ConfigurationElement";
 import { IPrsStream, instanceOfIPrsStream } from "./Protocol";
 import { BadParseException } from "./BadParseException";
+import { IAst } from "./IAst";
 import { Lpg as Lpg } from "./Utils";
 import { TokenStreamNotIPrsStreamException } from "./TokenStreamNotIPrsStreamException";
 import { BadParseSymFileException } from "./BadParseSymFileException";
@@ -355,8 +356,28 @@ export class BacktrackingParser extends Stacks {
                 this.process_reductions();
             } else { // a shift or shift-reduce action
                 if (this.tokStream.getKind(curtok) > this.NT_OFFSET) {
-                    let badtok: ErrorToken = <ErrorToken>(<PrsStream>this.tokStream).getIToken(curtok);
-                    throw new BadParseException(badtok.getErrorToken().getTokenIndex());
+                    //
+                    // A replayed nonterminal ErrorToken (inserted by scope
+                    // recovery). If the RuleAction supplies prosthetic-AST
+                    // factories, synthesize a placeholder node; otherwise keep
+                    // the historical behavior of throwing a BadParseException.
+                    //
+                    let synthesized: IAst | null = null;
+                    let factories = this.ra.getProstheticAst ? this.ra.getProstheticAst() : null;
+                    if (factories && this.prs.getProsthesisIndex) {
+                        let slot = this.prs.getProsthesisIndex(this.tokStream.getKind(curtok));
+                        if (slot >= 0 && slot < factories.length) {
+                            let factory = factories[slot];
+                            if (factory) {
+                                synthesized = factory((<PrsStream>this.tokStream).getIToken(curtok));
+                            }
+                        }
+                    }
+                    if (synthesized === null) {
+                        let badtok: ErrorToken = <ErrorToken>(<PrsStream>this.tokStream).getIToken(curtok);
+                        throw new BadParseException(badtok.getErrorToken().getTokenIndex());
+                    }
+                    this.parseStack[this.stateStackTop] = synthesized;
                 }
                 this.lastToken = curtok;
                 curtok = this.tokens.get(++ti);

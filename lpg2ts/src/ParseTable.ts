@@ -48,6 +48,10 @@ export interface ParseTable {
     isNullable(symbol: number): boolean;
     isValidForParser(): boolean;
     getBacktrack(): boolean;
+    // Tables generated with %Recover symbols implement this to map a replayed
+    // nonterminal token kind (NT_OFFSET already applied) to a compact slot in
+    // RuleAction.getProstheticAst; absent otherwise.
+    getProsthesisIndex?(index: number): number;
 }
 
 export  class EscapeStrictPropertyInitializationParseTable implements ParseTable {

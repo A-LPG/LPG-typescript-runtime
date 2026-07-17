@@ -55,6 +55,8 @@ export * from "./ParseErrorCodes";
 
 export * from "./ParseTable";
 
+export * from "./ProstheticAst";
+
 export * from "./Protocol";
 
 export * from "./PrsStream";
