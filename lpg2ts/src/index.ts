@@ -17,6 +17,7 @@ export * from "./DeterministicParser";
 export * from "./DiagnoseParser";
 
 export * from "./ErrorToken";
+export * from "./ExpectedTokens";
 
 export * from "./IAbstractArrayList";
 
