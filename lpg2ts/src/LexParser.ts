@@ -381,6 +381,15 @@ export class LexParser {
         this.resetTokenStream(start_offset);
         return this.lexNextToken(this.tokStream.getStreamLength());
     }
+
+    /**
+     * Scan the next token during incremental re-lex. Returns the parser stream
+     * index of the next unscanned character (curtok).
+     */
+    public incrementalParseCharacters(): number {
+        this.scanNextToken();
+        return this.curtok;
+    }
     private lexNextToken(end_offset: number): boolean {
         //
         // Indicate that we are going to run the incremental parser and that

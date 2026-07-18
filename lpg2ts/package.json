@@ -21,7 +21,8 @@
   "homepage": "https://github.com/A-LPG/LPG-typescript-runtime#readme",
   "scripts": {
     "build": "tsc --build",
-    "clean": "tsc --build --clean"
+    "clean": "tsc --build --clean",
+    "test:incremental": "npm run build && node test/incremental/incremental_prs_stream.js"
   },
   "devDependencies": {
     "@types/node": "^14.17.6",

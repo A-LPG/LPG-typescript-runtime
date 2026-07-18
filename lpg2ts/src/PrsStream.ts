@@ -2,12 +2,12 @@ import { LexStream } from "./LexStream";
 import { Token } from "./Token";
 import { ErrorToken } from "./ErrorToken";
 import { Adjunct } from "./Adjunct";
+import { Lpg as Lpg } from "./Utils";
 //import { Utf8LexStream } from "./Utf8LexStream";
 import { IMessageHandler } from "./IMessageHandler";
 import { NullTerminalSymbolsException } from "./NullTerminalSymbolsException";
 import { UndefinedEofSymbolException } from "./UndefinedEofSymbolException";
 import { UnimplementedTerminalsException } from "./UnimplementedTerminalsException";
-import { Lpg as Lpg } from "./Utils";
 import { IPrsStream, ILexStream, IToken, EscapeStrictPropertyInitializationLexStream } from "./Protocol";
 //
 // PrsStream holds an arraylist of tokens "lexed" from the input stream.
@@ -428,6 +428,64 @@ export class PrsStream implements IPrsStream {
             tempInfo = [];
         }
         this.iLexStream?.reportLexicalError(this.getStartOffset(leftToken), this.getEndOffset(rightToken),errorCode, this.getStartOffset(errorToken), this.getEndOffset(errorToken), tempInfo);
+    }
+
+    private truncateList<E>(list: Lpg.Util.ArrayList<E>, newSize: number): void {
+        while (list.size() > newSize) {
+            list.remove(list.size() - 1);
+        }
+    }
+
+    /**
+     * Reset the token stream at a character damage offset for incremental re-lex.
+     * Prefix tokens before the damage point are retained; the suffix is discarded
+     * (returned as affected tokens — not tree-sitter subtree reuse).
+     */
+    public incrementalResetAtCharacterOffset(damage_offset: number): IToken[] {
+        let token_index: number = this.getTokenIndexAtCharacter(damage_offset);
+        let adjunct_index: number = -1;
+
+        // Negative token_index: damage did not fall on a token; -token_index is the
+        // index of the token preceding the damage offset.
+        token_index = (token_index < 0 ? -token_index : token_index);
+
+        if (this.getTokenAt(token_index).getEndOffset() + 1 < damage_offset) {
+            for (let i: number = this.getTokenAt(token_index).getAdjunctIndex();
+                 i < this.adjuncts.size() && this.adjuncts.get(i).getTokenIndex() == token_index;
+                 i++) {
+                if (this.adjuncts.get(i).getStartOffset() < damage_offset) {
+                    adjunct_index = i;
+                } else {
+                    break;
+                }
+            }
+        }
+
+        const affected_tokens: IToken[] = [];
+
+        if (adjunct_index >= 0) {
+            token_index++;
+            for (let i: number = adjunct_index; i < this.getTokenAt(token_index).getAdjunctIndex(); i++) {
+                affected_tokens.push(this.adjuncts.get(i));
+            }
+            this.truncateList(this.adjuncts, adjunct_index);
+        } else {
+            this.truncateList(this.adjuncts, this.getTokenAt(token_index).getAdjunctIndex());
+        }
+
+        for (let i: number = token_index; i < this.tokens.size() - 1; i++) {
+            affected_tokens.push(this.getTokenAt(i));
+            for (let k: number = this.getTokenAt(i).getAdjunctIndex();
+                 k < this.getTokenAt(i + 1).getAdjunctIndex();
+                 k++) {
+                affected_tokens.push(this.adjuncts.get(k));
+            }
+        }
+        affected_tokens.push(this.getTokenAt(this.tokens.size() - 1));
+
+        this.truncateList(this.tokens, token_index);
+
+        return affected_tokens;
     }
 }
 

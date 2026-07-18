@@ -28,6 +28,8 @@ export * from "./IAstVisitor";
 export * from "./IMessageHandler";
 
 
+export * from "./IncrementalParse";
+
 export * from "./IntSegmentedTuple";
 
 export * from "./IntTuple";

@@ -40,6 +40,31 @@ npm run build
 | Backtracking | yes |
 | Nested automatic AST | yes |
 | `%Recover` prosthetic AST | yes |
+| Incremental re-lex / re-parse | yes — see [Incremental parsing](#incremental-parsing-honest-positioning) |
+
+## Incremental parsing (honest positioning)
+
+Same model as the C++ runtime:
+
+- **Token-level re-lex:** `PrsStream.incrementalResetAtCharacterOffset(damageOffset)` truncates the damaged suffix; `LexParser.incrementalParseCharacters()` rescans.
+- **Statement-level re-parse:** `DeterministicParser.resetParserEntry()` then `parse(sym, index)` for k-token lookahead steps.
+- **Orchestration:** `incrementalRelexAfterDamage`, `incrementalReparseStep` from `IncrementalParse`.
+
+This is **not** tree-sitter-style subtree reuse (`tree.edit()`, grafting retained syntax nodes).
+
+```typescript
+import {
+  PrsStream,
+  LexParser,
+  incrementalRelexAfterDamage,
+  INCREMENTAL_PARSING_POSITIONING,
+} from "lpg2ts";
+
+// damageOffset / range → re-lex affected region, then statement-level re-parse
+console.log(INCREMENTAL_PARSING_POSITIONING);
+```
+
+Run contract test: `npm run test:incremental` (from `lpg2ts/`).
 
 ## Publish status
 

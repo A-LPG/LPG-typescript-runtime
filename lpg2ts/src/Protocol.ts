@@ -287,6 +287,12 @@ export interface IPrsStream extends TokenStream {
 
     makeErrorToken(first: number, last: number, error: number, kind: number): number;
 
+    /**
+     * Truncate token/adjunct suffix from a character damage offset for honest
+     * incremental re-lex. Returns tokens removed from the stream (not reused).
+     */
+    incrementalResetAtCharacterOffset(damage_offset: number): IToken[];
+
     m3C89586D99F2567D21410F29B1B2606574892Aa7: number;
 }
 ;
