@@ -48,6 +48,9 @@ export interface ParseTable {
     isNullable(symbol: number): boolean;
     isValidForParser(): boolean;
     getBacktrack(): boolean;
+    // Tables generated with -glr implement this and return true; absent or
+    // false for non-GLR tables (matches Java ParseTable.isGLR default).
+    isGLR?(): boolean;
     // Tables generated with %Recover symbols implement this to map a replayed
     // nonterminal token kind (NT_OFFSET already applied) to a compact slot in
     // RuleAction.getProstheticAst; absent otherwise.

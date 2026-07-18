@@ -8,6 +8,12 @@ export * from "./BadParseException";
 
 export * from "./BadParseSymFileException";
 
+export * from "./GLRParser";
+
+export * from "./GssEdge";
+
+export * from "./GssNode";
+
 export * from "./ConfigurationElement";
 
 export * from "./ConfigurationStack";
@@ -48,6 +54,8 @@ export * from "./NotBacktrackParseTableException";
 
 export * from "./NotDeterministicParseTableException";
 
+export * from "./NotGLRParseTableException";
+
 export * from "./NullExportedSymbolsException";
 
 export * from "./NullTerminalSymbolsException";
@@ -69,6 +77,8 @@ export * from "./RecoveryParser";
 export * from "./RuleAction";
 
 export * from "./Stacks";
+
+export * from "./SppfNode";
 
 export * from "./StateElement";
 

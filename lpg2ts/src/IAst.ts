@@ -7,6 +7,8 @@ export interface IAst {
    // getTypeInfo() : string;
 
     getNextAst(): IAst | null;
+    // GLR forest packing; default no-op when omitted (matches Java IAst).
+    setNextAst?(n: IAst): void;
     getParent(): IAst| null;
 
     getLeftIToken(): IToken;

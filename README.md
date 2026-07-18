@@ -38,6 +38,7 @@ npm run build
 |---------|--------|
 | Deterministic parser | yes |
 | Backtracking | yes |
+| GLR (GSS/SPPF) | yes — `-glr` + `glrParserTemplateF.gi`; `GLRParser` / `getSppfRoot()` / `getNextAst()` |
 | Nested automatic AST | yes |
 | `%Recover` prosthetic AST | yes |
 | Incremental re-lex / re-parse | yes — see [Incremental parsing](#incremental-parsing-honest-positioning) |
